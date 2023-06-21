@@ -38,7 +38,7 @@ dnSpyThemeInstaller **ONLY** supports **Windows**.
 
 
 - [Atom One Dark](Themes/Atom_One_Dark.dntheme)
-- [Dracula](Themes/Dracula.dntheme)(Themes/Dracula.dntheme)
+- [Dracula](Themes/Dracula.dntheme)
 - [Github Dark](Themes/Github_Dark.dntheme)
 - [Material Oceanic](Themes/Material_Oceanic.dntheme)
 - [Material Darker](Themes/MaterialDarker.dntheme)
