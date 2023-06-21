@@ -7,6 +7,15 @@ Automatically adds a curated list of additional themes to dnSpy
 ~~dnSpyThemeInstaller has a [sister project](link) called dnSpyPluginInstaller which is almost identical, except it's for plugins instead of themes~~
 **dnSpyPluginInstaller** is yet to be created. When it is created, this will be updated.
 
+# Using Themes
+
+[dnSpy](https://github.com/dnSpy/dnSpy) is a tool for reverse engineering .NET assemblies. dnSpy supports themes to make it look cooler. To select a theme, use the `View > Theme` menu:
+
+![dnSpy Theme](https://cdn.discordapp.com/attachments/861748086724362260/1020453455975940126/unknown.png)
+*Image from https://forum.wearedevs.net/t/28875*
+
+dnSpy comes with a few built-in themes. However, 3 themes isn't enough! Luckily, dnSpy allows you to make custom themes. The goal of this project is to make custom themes more accessible.
+
 # Requirements
 
 dnSpyThemeInstaller **ONLY** supports **Windows**.
@@ -93,9 +102,7 @@ dnSpyThemeInstallern -p
 
 If you'd prefer to do it yourself rather than using this tool, then I don't know why you're here. But here's how:
 
-Copy the
-
-[UNFINISHED]
+Copy the theme into the ` dnSpy\bin\Themes` folder, then restart dnSpy.
 
 # Credits
 
