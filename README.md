@@ -102,7 +102,7 @@ dnSpyThemeInstallern -p
 
 If you'd prefer to do it yourself rather than using this tool, then I don't know why you're here. But here's how:
 
-Copy the theme into the ` dnSpy\bin\Themes` folder, then restart dnSpy.
+Copy the theme into the `dnSpy\bin\Themes` folder, then restart dnSpy.
 
 # Credits
 
