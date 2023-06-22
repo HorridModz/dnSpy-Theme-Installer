@@ -18,7 +18,7 @@ dnSpy comes with a few built-in themes. However, 3 themes isn't enough! Luckily,
 
 # Requirements
 
-dnSpyThemeInstaller **ONLY** supports **Windows**.
+- [.NET 7.0 Framework](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
 
 # Features
 
@@ -30,6 +30,7 @@ dnSpyThemeInstaller **ONLY** supports **Windows**.
   install [HoLLy](https://github.com/holly-hacker)'s [ThemeHotReload](https://github.com/HoLLy-HaCKeR/dnSpy.Extension.ThemeHotReload)
   plugin, which allows for
   hot-reloading themes during theme development. This plugin is **ONLY FOR** `.NET 5.0` version of `dnSpy 6.1.8`.
+- Cross-platform (I think, hasn't been tested)
 
 # Built-in Themes
 
