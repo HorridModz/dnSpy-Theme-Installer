@@ -55,8 +55,6 @@ static class Program
             
             foreach (var flag in flags)
             {
-                // This nullcheck (flag.Value != null) is unnecessary, but Rider
-                // isn't smart enough to know that, so I added it to stop Rider from complaining
                 if (new List<string> { "b", "-i", "-e", "-f", "-p" }.Contains(flag.Key))
                 {
                     Console.Error.WriteLine("Error: Provide the path to your dnSpy installation as the" +
