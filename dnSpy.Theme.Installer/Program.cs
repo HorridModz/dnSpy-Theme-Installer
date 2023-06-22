@@ -185,7 +185,7 @@ static class Program
                 if (flags.ContainsKey("-i"))
                 {
                     // This regex matches spaces, except when inside single or double quotes.
-                    includeThemes = new List<string>(Regex.Split(flags["-i"],
+                    includeThemes = new List<string>(Regex.Split(flags["-i"].Trim(),
                         """\s+(?=(?:[^'"]|'[^']*'|"[^"]*")*$)"""));
                 }
 
@@ -193,7 +193,7 @@ static class Program
                 if (flags.ContainsKey("-e"))
                 {
                     // This regex matches spaces, except when inside single or double quotes.
-                    excludeThemes = new List<string>(Regex.Split(flags["-e"],
+                    excludeThemes = new List<string>(Regex.Split(flags["-e"].Trim(),
                         """\s+(?=(?:[^'"]|'[^']*'|"[^"]*")*$)"""));
                 }
 
@@ -238,7 +238,7 @@ static class Program
             if (flags.ContainsKey("-f"))
             {
                 // This regex matches spaces, except when inside single or double quotes.
-                var themePaths = new List<string>(Regex.Split(flags["-f"],
+                var themePaths = new List<string>(Regex.Split(flags["-f"].Trim(),
                     """\s+(?=(?:[^'"]|'[^']*'|"[^"]*")*$)"""));
                 Console.WriteLine($"Installing theme(s) from {ListItems(themePaths)}...");
                 try
