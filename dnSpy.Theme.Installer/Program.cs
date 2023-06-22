@@ -122,7 +122,7 @@ static class Program
         if (flags.ContainsKey("-l"))
         {
             // Replace underscores with spaces
-            List<string> themes = themeInstaller.BuiltinThemes.Select(
+            List<string> themes = ThemeInstaller.BuiltinThemes.Select(
                 theme => theme.Replace("_", " ")).ToList();
             Console.WriteLine($"""Built-in Themes:{string.Join("\n-", themes)}\n""");
         }
