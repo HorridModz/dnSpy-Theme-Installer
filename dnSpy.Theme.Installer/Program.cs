@@ -33,6 +33,11 @@ static class Program
         {
             if (arg.StartsWith('-') && arg.Length > 1 && (arg.Length == 2 || char.IsWhiteSpace(arg, 2)))
             {
+                if (flags.ContainsKey(arg[0..2]))
+                {
+                    Console.Error.WriteLine($"Error: Duplicate flag '{arg[0..2]}'");
+                    return 1;
+                }
                 flags.Add(arg[0..2], arg.Length > 2 ? arg[2..] : null);
             }
             else
