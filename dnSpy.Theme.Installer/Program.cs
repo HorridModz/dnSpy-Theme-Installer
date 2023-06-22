@@ -116,22 +116,22 @@ static class Program
             Help();
             return 0;
         }
+        
+        // List All Built-in Themes
+
+        if (flags.ContainsKey("-l"))
+        {
+            // Replace underscores with spaces
+            List<string> themes = themeInstaller.BuiltinThemes.Select(
+                theme => theme.Replace("_", " ")).ToList();
+            Console.WriteLine($"""Built-in Themes:{string.Join("\n-", themes)}\n""");
+        }
 
         if (flags.ContainsKey("-b") || flags.ContainsKey("-i") || flags.ContainsKey("-e") ||
             flags.ContainsKey("-f") || flags.ContainsKey("-p"))
         { 
             var themeInstaller = new ThemeInstaller(dnSpyDirectory);
             var themeHotReloadPluginInstaller = new ThemeHotReloadPluginInstaller(dnSpyDirectory);
-
-            // List All Built-in Themes
-
-            if (flags.ContainsKey("-l"))
-            {
-                // Replace underscores with spaces
-                List<string> themes = themeInstaller.BuiltinThemes.Select(
-                    theme => theme.Replace("_", " ")).ToList();
-                Console.WriteLine($"""Built-in Themes:{string.Join("\n-", themes)}\n""");
-            }
 
             // Install Built-in Themes
 
