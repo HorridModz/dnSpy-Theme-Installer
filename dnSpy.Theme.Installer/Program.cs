@@ -199,12 +199,28 @@ static class Program
                 if (includeThemes != null)
                 {
                     Console.WriteLine($"Installing built-in theme(s) {ListItems(includeThemes)}...");
-                    themeInstaller.InstallBuiltinThemes(includeThemes);
+                    try
+                    {
+                        themeInstaller.InstallBuiltinThemes(includeThemes);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine($"Error: {e.Message}");
+                        return 1;
+                    }
                 }
                 else if (excludeThemes != null)
                 {
                     Console.WriteLine($"Installing all built-in themes except {ListItems(includeThemes)}...");
-                    themeInstaller.InstallBuiltinThemesExcluding(excludeThemes);
+                    try
+                    {
+                        themeInstaller.InstallBuiltinThemesExcluding(excludeThemes);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine($"Error: {e.Message}");
+                        return 1;
+                    }
                 }
                 else
                 {
