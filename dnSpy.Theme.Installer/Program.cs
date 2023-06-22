@@ -117,81 +117,81 @@ static class Program
             return 0;
         }
 
-        var themeInstaller = new ThemeInstaller(dnSpyDirectory);
-        var themeHotReloadPluginInstaller = new ThemeHotReloadPluginInstaller(dnSpyDirectory);
-
-        // List All Built-in Themes
-
-        if (flags.ContainsKey("-l"))
-        {
-            // Replace underscores with spaces
-            List<string> themes = themeInstaller.BuiltinThemes.Select(
-                theme => theme.Replace("_", " ")).ToList();
-            Console.WriteLine($"""Built-in Themes:{string.Join("\n-", themes)}\n""");
-        }
-
-        // Install Built-in Themes
-
-        if (flags.ContainsKey("-b") || flags.ContainsKey("-i") || flags.ContainsKey("-e"))
-        {
-            // Remember: includeThemes and excludeThemes are mutually exclusive, so only one of them
-            // can exist
-
-            List<string>? includeThemes = null;
-            if (flags.ContainsKey("-i"))
-            {
-                includeThemes = new List<string>(flags["-i"].Split(" "));
-            }
-
-            List<string>? excludeThemes = null;
-            if (flags.ContainsKey("-e"))
-            {
-                excludeThemes = new List<string>(flags["-e"].Split(" "));
-            }
-
-            // Remember: includeThemes and excludeThemes are mutually exclusive, so only one of them
-            // can exist
-
-            if (includeThemes != null)
-            {
-                Console.WriteLine($"Installing built-in theme(s) {ListItems(includeThemes)}...");
-                themeInstaller.InstallBuiltinThemes(includeThemes);
-            }
-            else if (excludeThemes != null)
-            {
-                Console.WriteLine($"Installing all built-in themes except {ListItems(includeThemes)}...");
-                themeInstaller.InstallBuiltinThemesExcluding(excludeThemes);
-            }
-            else
-            {
-                Console.WriteLine("Installing all built-in themes...");
-                themeInstaller.InstallBuiltinThemes();
-            }
-        }
-
-        // Install Your Own Themes
-
-        if (flags.ContainsKey("-f"))
-        {
-            // This regex matches spaces, except when inside single or double quotes.
-            var themePaths = new List<string>(Regex.Split(flags["-f"],
-                """\s+(?=(?:[^'"]|'[^']*'|"[^"]*")*$)"""));
-            Console.WriteLine($"Installing theme(s) from {ListItems(themePaths)}...");
-            themeInstaller.InstallThemes(themePaths);
-        }
-
-        // Install ThemeHotReload plugin
-
-        if (flags.ContainsKey("-p"))
-        {
-            Console.WriteLine("Installing ThemeHotReload plugin...");
-            themeHotReloadPluginInstaller.InstallPlugin();
-        }
-
         if (flags.ContainsKey("-b") || flags.ContainsKey("-i") || flags.ContainsKey("-e") ||
             flags.ContainsKey("-f") || flags.ContainsKey("-p"))
-        {
-            Console.WriteLine("Done! Restart dnSpy  for the changes to show.");    
+        { 
+            var themeInstaller = new ThemeInstaller(dnSpyDirectory);
+            var themeHotReloadPluginInstaller = new ThemeHotReloadPluginInstaller(dnSpyDirectory);
+
+            // List All Built-in Themes
+
+            if (flags.ContainsKey("-l"))
+            {
+                // Replace underscores with spaces
+                List<string> themes = themeInstaller.BuiltinThemes.Select(
+                    theme => theme.Replace("_", " ")).ToList();
+                Console.WriteLine($"""Built-in Themes:{string.Join("\n-", themes)}\n""");
+            }
+
+            // Install Built-in Themes
+
+            if (flags.ContainsKey("-b") || flags.ContainsKey("-i") || flags.ContainsKey("-e"))
+            {
+                // Remember: includeThemes and excludeThemes are mutually exclusive, so only one of them
+                // can exist
+
+                List<string>? includeThemes = null;
+                if (flags.ContainsKey("-i"))
+                {
+                    includeThemes = new List<string>(flags["-i"].Split(" "));
+                }
+
+                List<string>? excludeThemes = null;
+                if (flags.ContainsKey("-e"))
+                {
+                    excludeThemes = new List<string>(flags["-e"].Split(" "));
+                }
+
+                // Remember: includeThemes and excludeThemes are mutually exclusive, so only one of them
+                // can exist
+
+                if (includeThemes != null)
+                {
+                    Console.WriteLine($"Installing built-in theme(s) {ListItems(includeThemes)}...");
+                    themeInstaller.InstallBuiltinThemes(includeThemes);
+                }
+                else if (excludeThemes != null)
+                {
+                    Console.WriteLine($"Installing all built-in themes except {ListItems(includeThemes)}...");
+                    themeInstaller.InstallBuiltinThemesExcluding(excludeThemes);
+                }
+                else
+                {
+                    Console.WriteLine("Installing all built-in themes...");
+                    themeInstaller.InstallBuiltinThemes();
+                }
+            }
+
+            // Install Your Own Themes
+
+            if (flags.ContainsKey("-f"))
+            {
+                // This regex matches spaces, except when inside single or double quotes.
+                var themePaths = new List<string>(Regex.Split(flags["-f"],
+                    """\s+(?=(?:[^'"]|'[^']*'|"[^"]*")*$)"""));
+                Console.WriteLine($"Installing theme(s) from {ListItems(themePaths)}...");
+                themeInstaller.InstallThemes(themePaths);
+            }
+
+            // Install ThemeHotReload plugin
+
+            if (flags.ContainsKey("-p"))
+            {
+                Console.WriteLine("Installing ThemeHotReload plugin...");
+                themeHotReloadPluginInstaller.InstallPlugin();
+            }
+            
+            Console.WriteLine("Done! Restart for the changes to show.");    
         }
         
         return 0;
