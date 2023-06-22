@@ -51,7 +51,7 @@ static class Program
             {
                 // This nullcheck (flag.Value != null) is unnecessary, but Rider
                 // isn't smart enough to know that, so I added it to stop Rider from complaining
-                if (new List<string> { "b", "-i", "-e", "-f", "p" }.Contains(flag.Key))
+                if (new List<string> { "b", "-i", "-e", "-f", "-p" }.Contains(flag.Key))
                 {
                     Console.Error.WriteLine("Provide the path to your dnSpy installation as the first argument.");
                     return 1;
@@ -71,7 +71,7 @@ static class Program
 
         foreach (var flag in flags)
         {
-            if (!(new List<string> { "h", "l", "b", "-i", "-e", "-f", "p" }.Contains(flag.Key)))
+            if (!(new List<string> { "-h", "-l", "-b", "-i", "-e", "-f", "-p" }.Contains(flag.Key)))
             {
                 Console.Error.WriteLine($"Unexpected flag: '{flag.Value}'. To see all valid flags, run" +
                                         " dnSpyThemeInstaller without any arguments or with the -h flag");
