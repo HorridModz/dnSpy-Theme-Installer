@@ -83,11 +83,9 @@ static class Program
                 Console.Error.WriteLine($"Error: Unexpected flag: '{flag.Value}'. To see all valid flags, run" +
                                         " dnSpyThemeInstaller without any arguments or with the -h flag");
             }
-
-            // This nullcheck (flag.Value != null) is unnecessary, but Rider
-            // isn't smart enough to know that, so I added it to stop Rider from complaining
+            
             if (new List<string> { "-i", "-e", "-f" }.Contains(flag.Key)
-                && flag.Value != null && flag.Value.All(char.IsWhiteSpace))
+                && flag.Value == null || flag.Value.All(char.IsWhiteSpace))
             {
                 switch (flag.Key)
                 {
