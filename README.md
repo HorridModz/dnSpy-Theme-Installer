@@ -56,6 +56,8 @@ Only **command-line** usage is supported.
 
 > **Note**: If an argument or flag value has multiple words, enclose it in double quotes (""). If you need to use double quotes in the value or the value has a space in it, use single quotes instead (or swap them).
 
+> **Warning**: If there is one argument enclosed in quotes, like this: ` "C:\Users\mr space\uhoh"`, the quotes will be removed automatically by the command line, and it will end up as `C:\Users\mr space\uhoh` - no quotes! To guard against this, nest single quotes inside of double quotes (or vice versa): `"'C:\Users\mr space\itsok'"`
+
 To display help, supply the `-h` flag.
 
 ```sh
