@@ -185,7 +185,7 @@ static class Program
                 if (flags.ContainsKey("-i"))
                 {
                     // This regex matches spaces, except when inside single or double quotes.
-                    includeThemes = new List<string>(Regex.Split(flags["-e"],
+                    includeThemes = new List<string>(Regex.Split(flags["-i"],
                         """\s+(?=(?:[^'"]|'[^']*'|"[^"]*")*$)"""));
                 }
 
