@@ -15,8 +15,6 @@ public class ThemeHotReloadPluginInstaller
         AssertDirectoryExists(dnSpyDirectory);
         
         dnSpyPluginsDirectory = Path.Combine(dnSpyDirectory, "bin", "Extensions");
-
-        AssertDirectoryExists(dnSpyPluginsDirectory);
         AssertDirectoryExists(PluginDirectory);
     }
 
@@ -25,6 +23,8 @@ public class ThemeHotReloadPluginInstaller
 
     public void InstallPlugin()
     {
-        CopyFilesInDirectoryRecursive(PluginDirectory, dnSpyPluginsDirectory);       
+        Directory.CreateDirectory(Path.Combine(dnSpyPluginsDirectory, "dnSpy.Extension.ThemeHotReload"));
+        CopyFilesInDirectoryRecursive(PluginDirectory, 
+            Path.Combine(dnSpyPluginsDirectory, "dnSpy.Extension.ThemeHotReload"));       
     }
 }
