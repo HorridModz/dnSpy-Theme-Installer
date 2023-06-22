@@ -41,6 +41,12 @@ static class Program
             }
         }
         
+        if (flags.Count == 0 && arguments.Count == 1)
+        {
+            Help();
+            return 0;
+        }
+        
         string? dnSpyDirectory = null;
 
         if (arguments.Count == 0)
