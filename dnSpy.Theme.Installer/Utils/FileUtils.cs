@@ -19,7 +19,7 @@ public static class FileUtils
         Directory.CreateDirectory(targetDir);
 
         foreach (var file in Directory.GetFiles(sourceDir))
-            File.Copy(file, Path.Combine(targetDir, Path.GetFileName(file)));
+            File.Copy(file, Path.Combine(targetDir, Path.GetFileName(file)), true);
 
         foreach (var directory in Directory.GetDirectories(sourceDir))
             CopyFilesInDirectoryRecursive(directory,
