@@ -1,0 +1,322 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "dnSpy.Extension.ThemeHotReload.x/1.0.0": {
+        "dependencies": {
+          "dnSpy.Contracts.DnSpy": "6.1.8"
+        },
+        "runtime": {
+          "dnSpy.Extension.ThemeHotReload.x.dll": {}
+        }
+      },
+      "dnlib/3.3.2": {
+        "dependencies": {
+          "System.Reflection.Emit": "4.7.0",
+          "System.Reflection.Emit.Lightweight": "4.7.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/dnlib.dll": {
+            "assemblyVersion": "3.3.2.0",
+            "fileVersion": "3.3.2.0"
+          }
+        }
+      },
+      "Microsoft.NETCore.Platforms/2.0.0": {},
+      "Microsoft.VisualStudio.Composition.NetFxAttributes/16.4.11": {
+        "dependencies": {
+          "System.ComponentModel.Composition": "4.5.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.VisualStudio.Composition.NetFxAttributes.dll": {
+            "assemblyVersion": "16.4.0.0",
+            "fileVersion": "16.4.11.62881"
+          }
+        }
+      },
+      "Microsoft.VisualStudio.CoreUtility/15.5.27130": {
+        "runtime": {
+          "lib/net45/Microsoft.VisualStudio.CoreUtility.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.3.1711.902"
+          }
+        }
+      },
+      "Microsoft.VisualStudio.Language.Intellisense/15.5.27130": {
+        "dependencies": {
+          "Microsoft.VisualStudio.Text.UI": "15.5.27130"
+        },
+        "runtime": {
+          "lib/net45/Microsoft.VisualStudio.Language.Intellisense.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.3.1711.902"
+          }
+        }
+      },
+      "Microsoft.VisualStudio.Text.Data/15.5.27130": {
+        "dependencies": {
+          "Microsoft.VisualStudio.CoreUtility": "15.5.27130"
+        },
+        "runtime": {
+          "lib/net45/Microsoft.VisualStudio.Text.Data.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.3.1711.902"
+          }
+        }
+      },
+      "Microsoft.VisualStudio.Text.Logic/15.5.27130": {
+        "dependencies": {
+          "Microsoft.VisualStudio.CoreUtility": "15.5.27130",
+          "Microsoft.VisualStudio.Text.Data": "15.5.27130"
+        },
+        "runtime": {
+          "lib/net45/Microsoft.VisualStudio.Text.Logic.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.3.1711.902"
+          }
+        }
+      },
+      "Microsoft.VisualStudio.Text.UI/15.5.27130": {
+        "dependencies": {
+          "Microsoft.VisualStudio.CoreUtility": "15.5.27130",
+          "Microsoft.VisualStudio.Text.Data": "15.5.27130",
+          "Microsoft.VisualStudio.Text.Logic": "15.5.27130"
+        },
+        "runtime": {
+          "lib/net45/Microsoft.VisualStudio.Text.UI.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.3.1711.902"
+          }
+        }
+      },
+      "Microsoft.VisualStudio.Text.UI.Wpf/15.5.27130": {
+        "dependencies": {
+          "Microsoft.VisualStudio.CoreUtility": "15.5.27130",
+          "Microsoft.VisualStudio.Text.Data": "15.5.27130",
+          "Microsoft.VisualStudio.Text.Logic": "15.5.27130",
+          "Microsoft.VisualStudio.Text.UI": "15.5.27130"
+        },
+        "runtime": {
+          "lib/net45/Microsoft.VisualStudio.Text.UI.Wpf.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.3.1711.902"
+          }
+        }
+      },
+      "Ookii.Dialogs.Wpf/3.0.1": {
+        "runtime": {
+          "lib/net5.0-windows7.0/Ookii.Dialogs.Wpf.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.1.0"
+          }
+        }
+      },
+      "System.ComponentModel.Composition/4.5.0": {
+        "dependencies": {
+          "System.Security.Permissions": "4.5.0"
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/System.ComponentModel.Composition.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.26515.6"
+          }
+        }
+      },
+      "System.Reflection.Emit/4.7.0": {},
+      "System.Reflection.Emit.Lightweight/4.7.0": {},
+      "System.Security.AccessControl/4.5.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.0.0",
+          "System.Security.Principal.Windows": "4.5.0"
+        }
+      },
+      "System.Security.Permissions/4.5.0": {
+        "dependencies": {
+          "System.Security.AccessControl": "4.5.0"
+        }
+      },
+      "System.Security.Principal.Windows/4.5.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.0.0"
+        }
+      },
+      "dnSpy.Contracts.Logic/6.1.8": {
+        "dependencies": {
+          "dnlib": "3.3.2"
+        },
+        "runtime": {
+          "dnSpy.Contracts.Logic.dll": {}
+        },
+        "resources": {
+          "cs/dnSpy.Contracts.Logic.resources.dll": {
+            "locale": "cs"
+          },
+          "de/dnSpy.Contracts.Logic.resources.dll": {
+            "locale": "de"
+          },
+          "es-ES/dnSpy.Contracts.Logic.resources.dll": {
+            "locale": "es-ES"
+          },
+          "fa/dnSpy.Contracts.Logic.resources.dll": {
+            "locale": "fa"
+          },
+          "fr/dnSpy.Contracts.Logic.resources.dll": {
+            "locale": "fr"
+          },
+          "hu/dnSpy.Contracts.Logic.resources.dll": {
+            "locale": "hu"
+          },
+          "it/dnSpy.Contracts.Logic.resources.dll": {
+            "locale": "it"
+          },
+          "pt-BR/dnSpy.Contracts.Logic.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "pt-PT/dnSpy.Contracts.Logic.resources.dll": {
+            "locale": "pt-PT"
+          },
+          "ru/dnSpy.Contracts.Logic.resources.dll": {
+            "locale": "ru"
+          },
+          "tr/dnSpy.Contracts.Logic.resources.dll": {
+            "locale": "tr"
+          },
+          "uk/dnSpy.Contracts.Logic.resources.dll": {
+            "locale": "uk"
+          },
+          "zh-CN/dnSpy.Contracts.Logic.resources.dll": {
+            "locale": "zh-CN"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "dnSpy.Extension.ThemeHotReload.x/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "dnlib/3.3.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-16p2zxL0d0FJ7POvunZ+9cn3mREmQD1rDm+1C1eIMDBRAuEGLCSWdIobrUNYP//DcfMRYHbpgB8Gh2BYjEkS2Q==",
+      "path": "dnlib/3.3.2",
+      "hashPath": "dnlib.3.3.2.nupkg.sha512"
+    },
+    "Microsoft.NETCore.Platforms/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VdLJOCXhZaEMY7Hm2GKiULmn7IEPFE4XC5LPSfBVCUIA8YLZVh846gtfBJalsPQF2PlzdD7ecX7DZEulJ402ZQ==",
+      "path": "microsoft.netcore.platforms/2.0.0",
+      "hashPath": "microsoft.netcore.platforms.2.0.0.nupkg.sha512"
+    },
+    "Microsoft.VisualStudio.Composition.NetFxAttributes/16.4.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KufBhjVwhq+Sgt9Vl5XNOsZykU5aXpU8hO0UXlM98Giw5iRDJAxHBLSRYDzcadVtVrf++QSB95bVydxem0jegQ==",
+      "path": "microsoft.visualstudio.composition.netfxattributes/16.4.11",
+      "hashPath": "microsoft.visualstudio.composition.netfxattributes.16.4.11.nupkg.sha512"
+    },
+    "Microsoft.VisualStudio.CoreUtility/15.5.27130": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zteI/2y13GcSVEr7PDRrShEu/7xbSH9HIKIeH/syaldjsi+I7iLrh/FSu+ErBoNvHgcU7WnXY3l8VKsA5JxC+g==",
+      "path": "microsoft.visualstudio.coreutility/15.5.27130",
+      "hashPath": "microsoft.visualstudio.coreutility.15.5.27130.nupkg.sha512"
+    },
+    "Microsoft.VisualStudio.Language.Intellisense/15.5.27130": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OYi2RbIBNxNMms8uaOtEXuEB4mEgEmSvBwh3S+C2G35l7+wLAICa/UC6CZxf1rVwCRiyRS9Uv9Gs7Z4n+mmbXw==",
+      "path": "microsoft.visualstudio.language.intellisense/15.5.27130",
+      "hashPath": "microsoft.visualstudio.language.intellisense.15.5.27130.nupkg.sha512"
+    },
+    "Microsoft.VisualStudio.Text.Data/15.5.27130": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HCtsfpb1BH3q7f6rszkpA09JTF4lgx8BCZxOM2L+AB+j4bgtq1GoN4WOUSBgJamEtmU2moiXFQumEtZEFvaAxA==",
+      "path": "microsoft.visualstudio.text.data/15.5.27130",
+      "hashPath": "microsoft.visualstudio.text.data.15.5.27130.nupkg.sha512"
+    },
+    "Microsoft.VisualStudio.Text.Logic/15.5.27130": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Dx2D7gsGzrFCCacVxgEfwPypUoOy3pc1EamF9RapOjMKQEfgYaOewRDeZ+qgQowe8CKB7GVi7RvOXVUQObedcg==",
+      "path": "microsoft.visualstudio.text.logic/15.5.27130",
+      "hashPath": "microsoft.visualstudio.text.logic.15.5.27130.nupkg.sha512"
+    },
+    "Microsoft.VisualStudio.Text.UI/15.5.27130": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LUR3tY1bTf6NchU8kC/JTLI+Mr81fpxvmxrdoXiS6vtuZHSwnA4fQbMLchTFdLDGeX2gvDBHRIa9AJew5gvmOg==",
+      "path": "microsoft.visualstudio.text.ui/15.5.27130",
+      "hashPath": "microsoft.visualstudio.text.ui.15.5.27130.nupkg.sha512"
+    },
+    "Microsoft.VisualStudio.Text.UI.Wpf/15.5.27130": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lUSExNfNKTM/Ym0m1NPJPB7fFZ8IH5xO+g25+cEH+j0P/0Fo92nOBdocVzh9u28VoYAQ+QkjnxhiKPb1pEJnZA==",
+      "path": "microsoft.visualstudio.text.ui.wpf/15.5.27130",
+      "hashPath": "microsoft.visualstudio.text.ui.wpf.15.5.27130.nupkg.sha512"
+    },
+    "Ookii.Dialogs.Wpf/3.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-C3F1P+5XZVG4o5hB7JS1rZLalpCoGNv2FHAnN4UUJitYv0cD8xdy+eCouTfaZeCNTR/WUfip36e0Y4RDqKXBow==",
+      "path": "ookii.dialogs.wpf/3.0.1",
+      "hashPath": "ookii.dialogs.wpf.3.0.1.nupkg.sha512"
+    },
+    "System.ComponentModel.Composition/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+iB9FoZnfdqMEGq6np28X6YNSUrse16CakmIhV3h6PxEWt7jYxUN3Txs1D8MZhhf4QmyvK0F/EcIN0f4gGN0dA==",
+      "path": "system.componentmodel.composition/4.5.0",
+      "hashPath": "system.componentmodel.composition.4.5.0.nupkg.sha512"
+    },
+    "System.Reflection.Emit/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VR4kk8XLKebQ4MZuKuIni/7oh+QGFmZW3qORd1GvBq/8026OpW501SzT/oypwiQl4TvT8ErnReh/NzY9u+C6wQ==",
+      "path": "system.reflection.emit/4.7.0",
+      "hashPath": "system.reflection.emit.4.7.0.nupkg.sha512"
+    },
+    "System.Reflection.Emit.Lightweight/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-a4OLB4IITxAXJeV74MDx49Oq2+PsF6Sml54XAFv+2RyWwtDBcabzoxiiJRhdhx+gaohLh4hEGCLQyBozXoQPqA==",
+      "path": "system.reflection.emit.lightweight/4.7.0",
+      "hashPath": "system.reflection.emit.lightweight.4.7.0.nupkg.sha512"
+    },
+    "System.Security.AccessControl/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vW8Eoq0TMyz5vAG/6ce483x/CP83fgm4SJe5P8Tb1tZaobcvPrbMEL7rhH1DRdrYbbb6F0vq3OlzmK0Pkwks5A==",
+      "path": "system.security.accesscontrol/4.5.0",
+      "hashPath": "system.security.accesscontrol.4.5.0.nupkg.sha512"
+    },
+    "System.Security.Permissions/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9gdyuARhUR7H+p5CjyUB/zPk7/Xut3wUSP8NJQB6iZr8L3XUXTMdoLeVAg9N4rqF8oIpE7MpdqHdDHQ7XgJe0g==",
+      "path": "system.security.permissions/4.5.0",
+      "hashPath": "system.security.permissions.4.5.0.nupkg.sha512"
+    },
+    "System.Security.Principal.Windows/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-U77HfRXlZlOeIXd//Yoj6Jnk8AXlbeisf1oq1os+hxOGVnuG+lGSfGqTwTZBoORFF6j/0q7HXIl8cqwQ9aUGqQ==",
+      "path": "system.security.principal.windows/4.5.0",
+      "hashPath": "system.security.principal.windows.4.5.0.nupkg.sha512"
+    },
+    "dnSpy.Contracts.Logic/6.1.8": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

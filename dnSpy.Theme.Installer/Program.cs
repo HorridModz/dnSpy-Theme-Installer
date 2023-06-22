@@ -31,9 +31,9 @@ static class Program
         var flags = new Dictionary<string, string?>();
         foreach (var arg in args)
         {
-            if (arg.StartsWith('-') && arg.Length > 1 && char.IsWhiteSpace(arg, 1))
+            if (arg.StartsWith('-') && arg.Length > 1 && (arg.Length == 2 || char.IsWhiteSpace(arg, 2)))
             {
-                flags.Add(arg[1..2], arg[2..]);
+                flags.Add(arg[1..2], arg.Length > 2 ? arg[2..] : null);
             }
             else
             {
@@ -41,10 +41,12 @@ static class Program
             }
         }
         
-        // Check if path to dnSpy installation was not supplied but is needed
-        
+        string? dnSpyDirectory = null;
+
         if (arguments.Count == 0)
         {
+            // Check if path to dnSpy installation was not supplied but is needed
+            
             foreach (var flag in flags)
             {
                 // This nullcheck (flag.Value != null) is unnecessary, but Rider
@@ -56,15 +58,16 @@ static class Program
                 }
             }
         }
-
-        if (arguments.Count > 1)
+        else if (arguments.Count > 1)
         {
             Console.Error.WriteLine("Too many arguments. Provide the path to your" +
                                     " dnSpy installation as the first and only argument.");
             return 1;
         }
-
-        string dnSpyDirectory = arguments[0];
+        else
+        {
+            dnSpyDirectory = arguments[0];
+        }
 
         foreach (var flag in flags)
         {
