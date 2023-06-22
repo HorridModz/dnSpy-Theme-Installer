@@ -184,13 +184,17 @@ static class Program
                 List<string>? includeThemes = null;
                 if (flags.ContainsKey("-i"))
                 {
-                    includeThemes = new List<string>(flags["-i"].Split(" "));
+                    // This regex matches spaces, except when inside single or double quotes.
+                    includeThemes = new List<string>(Regex.Split(flags["-e"],
+                        """\s+(?=(?:[^'"]|'[^']*'|"[^"]*")*$)"""));
                 }
 
                 List<string>? excludeThemes = null;
                 if (flags.ContainsKey("-e"))
                 {
-                    excludeThemes = new List<string>(flags["-e"].Split(" "));
+                    // This regex matches spaces, except when inside single or double quotes.
+                    excludeThemes = new List<string>(Regex.Split(flags["-e"],
+                        """\s+(?=(?:[^'"]|'[^']*'|"[^"]*")*$)"""));
                 }
 
                 // Remember: includeThemes and excludeThemes are mutually exclusive, so only one of them
