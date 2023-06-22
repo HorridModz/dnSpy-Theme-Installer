@@ -26,24 +26,46 @@ static class Program
             Help();
             return 0;
         }
-
+        
+        // Parse arguments into flags and normal arguments
+        
         var arguments = new List<string>();
         var flags = new Dictionary<string, string?>();
+        string? flagName = null;
         foreach (var arg in args)
         {
-            if (arg.StartsWith('-') && arg.Length > 1 && (arg.Length == 2 || char.IsWhiteSpace(arg, 2)))
+            if (arg.StartsWith('-'))
             {
-                if (flags.ContainsKey(arg[0..2]))
+                //Flag
+                if (flagName != null)
                 {
-                    Console.Error.WriteLine($"Error: Duplicate flag '{arg[0..2]}'");
+                    // Last arg was a flag without a value.
+                    flags.Add(flagName, null);
+                }
+                // Set flagName now, but don't add it yet since there may be a value
+                flagName = arg;
+                if (flags.ContainsKey(flagName))
+                {
+                    Console.Error.WriteLine($"Error: Duplicate flag '{flagName}'");
                     return 1;
                 }
-                flags.Add(arg[0..2], arg.Length > 2 ? arg[2..] : null);
+            }
+            else if (flagName != null)
+                // Value for previous flag
+            {
+                flags.Add(flagName, arg);
+                flagName = null;
             }
             else
             {
+                // Normal argument
                 arguments.Add(arg);
             }
+        }
+        if (flagName != null)
+        {
+            // Last arg was a flag without a value. Add that flag now.
+            flags.Add(flagName, null);
         }
         
         if (flags.Count == 0 && arguments.Count == 1)
@@ -51,7 +73,7 @@ static class Program
             Help();
             return 0;
         }
-        
+
         string? dnSpyDirectory = null;
 
         if (arguments.Count == 0)
@@ -88,7 +110,7 @@ static class Program
             }
             
             if (new List<string> { "-i", "-e", "-f" }.Contains(flag.Key)
-                && (flag.Value == null || flag.Value.All(char.IsWhiteSpace)))
+                && (string.IsNullOrEmpty(flag.Value) || flag.Value.All(char.IsWhiteSpace)))
             {
                 switch (flag.Key)
                 {
@@ -110,8 +132,8 @@ static class Program
 
         if (flags.ContainsKey("-i") && flags.ContainsKey("-e"))
         {
-            Console.Error.WriteLine("Error: -i flag (list of built-in theme(s) to install" +
-                                    " and -e flag (list of built-in theme(s) not to install" +
+            Console.Error.WriteLine("Error: -i flag (list of built-in theme(s) to install)" +
+                                    " and -e flag (list of built-in theme(s) not to install)" +
                                     " are mutually exclusive. For more information, run" +
                                     " dnSpyThemeInstaller without any arguments or with the -h flag.");
             return 1;
@@ -137,10 +159,21 @@ static class Program
 
         if (flags.ContainsKey("-b") || flags.ContainsKey("-i") || flags.ContainsKey("-e") ||
             flags.ContainsKey("-f") || flags.ContainsKey("-p"))
-        { 
-            var themeInstaller = new ThemeInstaller(dnSpyDirectory);
-            var themeHotReloadPluginInstaller = new ThemeHotReloadPluginInstaller(dnSpyDirectory);
-
+        {
+            // Ugh, stupid block scope in try-catch
+            ThemeInstaller? themeInstaller = null;
+            ThemeHotReloadPluginInstaller? themeHotReloadPluginInstaller = null;
+            try
+            {
+                themeInstaller = new ThemeInstaller(dnSpyDirectory);
+                themeHotReloadPluginInstaller = new ThemeHotReloadPluginInstaller(dnSpyDirectory);
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+                return 1;
+            }
+            
             // Install Built-in Themes
 
             if (flags.ContainsKey("-b") || flags.ContainsKey("-i") || flags.ContainsKey("-e"))
@@ -188,7 +221,15 @@ static class Program
                 var themePaths = new List<string>(Regex.Split(flags["-f"],
                     """\s+(?=(?:[^'"]|'[^']*'|"[^"]*")*$)"""));
                 Console.WriteLine($"Installing theme(s) from {ListItems(themePaths)}...");
-                themeInstaller.InstallThemes(themePaths);
+                try
+                {
+                    themeInstaller.InstallThemes(themePaths);
+                }
+                catch (DirectoryNotFoundException e)
+                {
+                    Console.WriteLine($"Error: {e.Message}");
+                    return 1;
+                }
             }
 
             // Install ThemeHotReload plugin
@@ -199,7 +240,7 @@ static class Program
                 themeHotReloadPluginInstaller.InstallPlugin();
             }
             
-            Console.WriteLine("Done! Restart for the changes to show.");    
+            Console.WriteLine("Done! Restart dnSpy for the changes to show.");    
         }
         
         return 0;
@@ -219,11 +260,13 @@ Options:
   -h                Display help.
   -b                List all built-in themes.
   -b                Install all built-in themes.
-  -i [themes]       Install some built-in theme(s). Separate with space ("" "").
-  -e [themes]       Install all built-in theme(s) except these. Separate with space ("" "").
+  -i [themes]       Install some built-in theme(s). Separate with space ("" ""). Mutually exclusive with -e flag.
+  -e [themes]       Install all built-in theme(s) except these. Separate with space ("" ""). Mutually exclusive with -i flag.
   -f [paths]        Install your own theme(s) at these path(s). Separate with space ("" "").
   -p                Install ThemeHotReload plugin (https://github.com/HoLLy-HaCKeR/dnSpy.Extension.ThemeHotReload).
                       This plugin is **ONLY FOR** .NET 5.0 version of dnSpy 6.1.8.
+   
+   The -i and -e flags are mutually exclusive.
 "
                             );
     }
