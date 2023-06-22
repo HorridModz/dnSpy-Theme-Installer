@@ -41,13 +41,15 @@ dnSpyThemeInstaller **ONLY** supports **Windows**.
 - [Dracula](Themes/Dracula.dntheme)
 - [Github Dark](Themes/Github_Dark.dntheme)
 - [Material Oceanic](Themes/Material_Oceanic.dntheme)
-- [Material Darker](Themes/MaterialDarker.dntheme)
+- [Material Darker](Themes/Material_Darker.dntheme)
 - [Monokai Pro](Themes/Monokai_Pro.dntheme)
 - [Night Owl](Themes/Night_Owl.dntheme)
 
 # Usage
 
 > :exclamation: After running any commands, **restart dnSpy**  for the changes to show.
+
+> **Warning**: If your dnSpy installation folder requires admin rights to modify (this will happen if it is in the `ProgramFiles` or `ProgramFiles (x86)` folder), make sure to run dnSpyThemeInstaller as admin so it can access the folder.
 
 Only **command-line** usage is supported.
 
@@ -57,46 +59,51 @@ To display help, supply the `-h` flag.
 dnSpyThemeInstaller -h
 ```
 
-To install all of the built-in themes, run `dnSpyThemeInstaller` without any arguments.
+To list all of the built-in themes, use the `l` flag.
 
 ```sh
-dnSpyThemeInstaller
+dnSpyThemeInstaller -h
 ```
 
-You can also do this by simply running (double-clicking) the exe file.
-
-
-To only install some of the built-in themes, use the `-i` flag. It does not matter whether you specify the `.dntheme` file extension or not. Separate the themes you want to install with a space (` `). If a theme has a space in its name, enclose the theme in quotes.
+To install all of the built-in themes, run `dnSpyThemeInstaller` with the `b` flag. The `b` flag is overridden by the `i` and `e` flags.
 
 ```sh
-dnSpyThemeInstaller -i <themes_to_install>
+dnSpyThemeInstaller <path_to_dnSpy_folder>
+```
+
+To only install some of the built-in themes, use the `-i` flag. It does not matter whether you specify the `.dntheme` file extension or not. Separate the themes you want to install with a space (` `). If a theme has a space in its name, enclose the theme in quotes.
+> **Note**: The `i` flag and the `e ` flag are mutually exclusive
+
+```sh
+dnSpyThemeInstaller <path_to_dnSpy_folder> -i <themes_to_install>
 ```
 
 To install all of the built-in themes except for a few, use the `-e` flag. It does not matter whether you specify the `.dntheme` file extension or not. Separate the themes you want to exclude with a space (` `). If a theme has a space in its name, enclose the theme in quotes.
+> **Note**: The `i` flag and the `e ` flag are mutually exclusive
 
 ```sh
-dnSpyThemeInstaller -i <themes_to_exclude>
+dnSpyThemeInstaller <path_to_dnSpy_folder> -e <themes_to_exclude>
 ```
 
 To install your own theme(s), provide the location(s) of the file(s) as the `-f` flag. Separate the paths with a space (` `). If a path has a space in its name, enclose the path in quotes.
 
 ```sh
-dnSpyThemeInstaller -f <file_or_directory>
+dnSpyThemeInstaller <path_to_dnSpy_folder> -f <file_or_directory>
 ```
 
 This argument supports theme files or directories containing theme files. You can also mix and match, like this:
 
 ```sh
-dnSpyThemeInstaller -f "dir_1" "file_1" "dir_2" "file_2"
+dnSpyThemeInstaller <path_to_dnspy_folder> -f "dir_1" "file_1" "dir_2" "file_2"
 ```
 
 To install the [ThemeHotReload](https://github.com/HoLLy-HaCKeR/dnSpy.Extension.ThemeHotReload) plugin, which allows for hot-reloading themes during theme development, run `dnSpyThemeInstaller` with the `-p` flag:
 
 ```sh
-dnSpyThemeInstallern -p
+dnSpyThemeInstallern <path_to_dnSpy_folder> -p
 ```
 
-> **Warning**: This plugin is **ONLY FOR** `.NET 5.0` version of `dnSpy 6.1.8`. It will fail if these requirements are not matched.
+> **Warning**: This plugin is **ONLY FOR** `.NET 5.0` version of `dnSpy 6.1.8`. It will not work if these requirements are not matched.
 
 ## How to do it manually
 
