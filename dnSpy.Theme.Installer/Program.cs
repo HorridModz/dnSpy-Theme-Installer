@@ -9,7 +9,7 @@ namespace dnSpy.Theme.Installer;
 static class Program
 {
     private const string Version = "1.0";
-    
+
     private static int Main(string[] args)
     {
         Console.WriteLine(ThemeInstaller.BuiltinThemesDirectory);
@@ -29,7 +29,7 @@ static class Program
         }
 
         var arguments = new List<string>();
-        var flags = new Dictionary<string, string?>(); 
+        var flags = new Dictionary<string, string?>();
         foreach (var arg in args)
         {
             if (arg.StartsWith('-') && arg.Length > 1 && char.IsWhiteSpace(arg, 1))
@@ -40,143 +40,157 @@ static class Program
             {
                 arguments.Add(arg);
             }
-
-            if (arguments.Count == 0 && !(flags.ContainsKey("-h")))
-            {
-                Console.Error.WriteLine("Provide the path to your dnSpy installation as the first argument.");
-                return 1;
-            }
-            
-            if (arguments.Count > 1)
-            {
-                Console.Error.WriteLine("Too many arguments. Provide the path to your" +
-                                        " dnSpy installation as the first and only argument.");
-                return 1;
-            }
-
-            string dnSpyDirectory = arguments[0];
-            
-            foreach (var flag in flags)
-            {
-                if (!(new List<string> { "h", "l", "b", "-i", "-e", "-f", "p" }.Contains(flag.Key)))
-                {
-                    Console.Error.WriteLine($"Unexpected flag: '{flag.Value}'. To see all valid flags, run" +
-                                            " dnSpyThemeInstaller without any arguments or with the -h flag");
-                }
-                
-                // This nullcheck (flag.Value != null) is unnecessary, but Rider
-                // isn't smart enough to know that, so I added it to stop Rider from complaining
-                if (new List<string> {"-i", "-e", "-f"}.Contains(flag.Key)
-                    && flag.Value != null && flag.Value.All(char.IsWhiteSpace)) 
-                {
-                    switch (flag.Key)
-                    {
-                        case "-i":
-                            Console.Error.WriteLine("Expected value for -i flag - list of built-in theme(s) to" +
-                                                    " install, separated by space (' ')");
-                            return 1;
-                        case "-e":
-                            Console.Error.WriteLine("Expected value for -e flag - list of built-in theme(s)" +
-                                                    " not to install, separated by space (' ')");
-                            return 1;
-                        case "-f":
-                            Console.Error.WriteLine("Expected value for -f flag - list of path(s) to" +
-                                                    " theme files / folders containing theme files to install");
-                            return 1;
-                    }
-                }
-            }
-            
-            if (flags.ContainsKey("-i") && flags.ContainsKey("-e"))
-            {
-                Console.Error.WriteLine("-i flag (list of built-in theme(s) to install" +
-                                        " and -e flag (list of built-in theme(s) not to install" +
-                                        " are mutually exclusive. For more information, run" +
-                                        " dnSpyThemeInstaller without any arguments or with the -h flag");
-                return 1;
-            }
-            
-            // Help
-            
-            if (flags.ContainsKey("-h"))
-            {
-                Help();
-                return 0;
-            }
-
-            var themeInstaller = new ThemeInstaller(dnSpyDirectory);
-            var themeHotReloadPluginInstaller = new ThemeHotReloadPluginInstaller(dnSpyDirectory);
-            
-            // List All Built-in Themes
-            
-            if (flags.ContainsKey("-l"))
-            {
-                // Replace underscores with spaces
-                List<string> themes = themeInstaller.BuiltinThemes.Select(
-                    theme => theme.Replace("_", " ")).ToList();
-                Console.WriteLine($"""Built-in Themes:{string.Join("\n-", themes)}\n""");
-            }
-            
-            // Install Built-in Themes
-            
-            if (flags.ContainsKey("-b") || flags.ContainsKey("-i") || flags.ContainsKey("-e"))
-            {
-                // Remember: includeThemes and excludeThemes are mutually exclusive, so only one of them
-                // can exist
-                
-                List<string>? includeThemes = null;
-                if (flags.ContainsKey("-i"))
-                {
-                    includeThemes = new List<string>(flags["-i"].Split(" "));
-                }
-                
-                List<string>? excludeThemes = null;
-                if (flags.ContainsKey("-e"))
-                {
-                    excludeThemes = new List<string>(flags["-e"].Split(" "));
-                }
-                
-                // Remember: includeThemes and excludeThemes are mutually exclusive, so only one of them
-                // can exist
-                
-                if (includeThemes != null)
-                {
-                    Console.WriteLine($"Installing built-in theme(s) {ListItems(includeThemes)}...");
-                    themeInstaller.InstallBuiltinThemes(includeThemes);
-                }
-                else if (excludeThemes != null)
-                {
-                    Console.WriteLine($"Installing all built-in themes except {ListItems(includeThemes)}...");
-                    themeInstaller.InstallBuiltinThemesExcluding(excludeThemes);
-                }
-                else
-                {
-                    Console.WriteLine("Installing all built-in themes...");
-                    themeInstaller.InstallBuiltinThemes();
-                }
-            }
-            
-            // Install Your Own Themes
-            
-            if (flags.ContainsKey("-f"))
-            {
-                // This regex matches spaces, except when inside single or double quotes.
-                var themePaths = new List<string>(Regex.Split(flags["-f"],
-                    """\s+(?=(?:[^'"]|'[^']*'|"[^"]*")*$)"""));
-                Console.WriteLine($"Installing theme(s) from {ListItems(themePaths)}...");
-                themeInstaller.InstallThemes(themePaths);
-            }
-            
-            // Install ThemeHotReload plugin
-            
-            if (flags.ContainsKey("-p"))
-            {
-                Console.WriteLine("Installing ThemeHotReload plugin...");
-                themeHotReloadPluginInstaller.InstallPlugin();
-            }
         }
         
+        // Check if path to dnSpy installation was not supplied but is needed
         
+        if (arguments.Count == 0)
+        {
+            foreach (var flag in flags)
+            {
+                // This nullcheck (flag.Value != null) is unnecessary, but Rider
+                // isn't smart enough to know that, so I added it to stop Rider from complaining
+                if (new List<string> { "b", "-i", "-e", "-f", "p" }.Contains(flag.Key))
+                {
+                    Console.Error.WriteLine("Provide the path to your dnSpy installation as the first argument.");
+                    return 1;
+                }
+            }
+        }
+
+        if (arguments.Count > 1)
+        {
+            Console.Error.WriteLine("Too many arguments. Provide the path to your" +
+                                    " dnSpy installation as the first and only argument.");
+            return 1;
+        }
+
+        string dnSpyDirectory = arguments[0];
+
+        foreach (var flag in flags)
+        {
+            if (!(new List<string> { "h", "l", "b", "-i", "-e", "-f", "p" }.Contains(flag.Key)))
+            {
+                Console.Error.WriteLine($"Unexpected flag: '{flag.Value}'. To see all valid flags, run" +
+                                        " dnSpyThemeInstaller without any arguments or with the -h flag");
+            }
+
+            // This nullcheck (flag.Value != null) is unnecessary, but Rider
+            // isn't smart enough to know that, so I added it to stop Rider from complaining
+            if (new List<string> { "-i", "-e", "-f" }.Contains(flag.Key)
+                && flag.Value != null && flag.Value.All(char.IsWhiteSpace))
+            {
+                switch (flag.Key)
+                {
+                    case "-i":
+                        Console.Error.WriteLine("Expected value for -i flag - list of built-in theme(s) to" +
+                                                " install, separated by space (' ')");
+                        return 1;
+                    case "-e":
+                        Console.Error.WriteLine("Expected value for -e flag - list of built-in theme(s)" +
+                                                " not to install, separated by space (' ')");
+                        return 1;
+                    case "-f":
+                        Console.Error.WriteLine("Expected value for -f flag - list of path(s) to" +
+                                                " theme files / folders containing theme files to install");
+                        return 1;
+                }
+            }
+        }
+
+        if (flags.ContainsKey("-i") && flags.ContainsKey("-e"))
+        {
+            Console.Error.WriteLine("-i flag (list of built-in theme(s) to install" +
+                                    " and -e flag (list of built-in theme(s) not to install" +
+                                    " are mutually exclusive. For more information, run" +
+                                    " dnSpyThemeInstaller without any arguments or with the -h flag");
+            return 1;
+        }
+
+        // Help
+
+        if (flags.ContainsKey("-h"))
+        {
+            Help();
+            return 0;
+        }
+
+        var themeInstaller = new ThemeInstaller(dnSpyDirectory);
+        var themeHotReloadPluginInstaller = new ThemeHotReloadPluginInstaller(dnSpyDirectory);
+
+        // List All Built-in Themes
+
+        if (flags.ContainsKey("-l"))
+        {
+            // Replace underscores with spaces
+            List<string> themes = themeInstaller.BuiltinThemes.Select(
+                theme => theme.Replace("_", " ")).ToList();
+            Console.WriteLine($"""Built-in Themes:{string.Join("\n-", themes)}\n""");
+        }
+
+        // Install Built-in Themes
+
+        if (flags.ContainsKey("-b") || flags.ContainsKey("-i") || flags.ContainsKey("-e"))
+        {
+            // Remember: includeThemes and excludeThemes are mutually exclusive, so only one of them
+            // can exist
+
+            List<string>? includeThemes = null;
+            if (flags.ContainsKey("-i"))
+            {
+                includeThemes = new List<string>(flags["-i"].Split(" "));
+            }
+
+            List<string>? excludeThemes = null;
+            if (flags.ContainsKey("-e"))
+            {
+                excludeThemes = new List<string>(flags["-e"].Split(" "));
+            }
+
+            // Remember: includeThemes and excludeThemes are mutually exclusive, so only one of them
+            // can exist
+
+            if (includeThemes != null)
+            {
+                Console.WriteLine($"Installing built-in theme(s) {ListItems(includeThemes)}...");
+                themeInstaller.InstallBuiltinThemes(includeThemes);
+            }
+            else if (excludeThemes != null)
+            {
+                Console.WriteLine($"Installing all built-in themes except {ListItems(includeThemes)}...");
+                themeInstaller.InstallBuiltinThemesExcluding(excludeThemes);
+            }
+            else
+            {
+                Console.WriteLine("Installing all built-in themes...");
+                themeInstaller.InstallBuiltinThemes();
+            }
+        }
+
+        // Install Your Own Themes
+
+        if (flags.ContainsKey("-f"))
+        {
+            // This regex matches spaces, except when inside single or double quotes.
+            var themePaths = new List<string>(Regex.Split(flags["-f"],
+                """\s+(?=(?:[^'"]|'[^']*'|"[^"]*")*$)"""));
+            Console.WriteLine($"Installing theme(s) from {ListItems(themePaths)}...");
+            themeInstaller.InstallThemes(themePaths);
+        }
+
+        // Install ThemeHotReload plugin
+
+        if (flags.ContainsKey("-p"))
+        {
+            Console.WriteLine("Installing ThemeHotReload plugin...");
+            themeHotReloadPluginInstaller.InstallPlugin();
+        }
+
+        if (flags.ContainsKey("-b") || flags.ContainsKey("-i") || flags.ContainsKey("-e") ||
+            flags.ContainsKey("-f") || flags.ContainsKey("-p"))
+        {
+            Console.WriteLine("Done! Restart dnSpy  for the changes to show.");    
+        }
         
         return 0;
     }
