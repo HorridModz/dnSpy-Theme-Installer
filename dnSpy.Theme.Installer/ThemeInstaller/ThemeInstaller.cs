@@ -40,9 +40,10 @@ public class ThemeInstaller
         {
             var builtinThemesPaths = Directory.GetFiles(BuiltinThemesDirectory).ToList();
             var builtinThemes = new Dictionary<string, string>();
+            
             foreach (var themePath in builtinThemesPaths)
             {
-                builtinThemes.Add(Path.GetFileName(themePath), themePath);
+                builtinThemes.Add(Path.GetFileNameWithoutExtension(themePath), themePath);
             }
 
             return builtinThemes;
