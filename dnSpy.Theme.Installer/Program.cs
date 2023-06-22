@@ -221,7 +221,7 @@ static class Program
                 }
                 else if (excludeThemes != null)
                 {
-                    Console.WriteLine($"Installing all built-in themes except {ListItems(includeThemes)}...");
+                    Console.WriteLine($"Installing all built-in themes except {ListItems(excludeThemes)}...");
                     try
                     {
                         themeInstaller.InstallBuiltinThemesExcluding(excludeThemes);
