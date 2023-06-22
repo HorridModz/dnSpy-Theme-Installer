@@ -185,16 +185,20 @@ static class Program
                 if (flags.ContainsKey("-i"))
                 {
                     // This regex matches spaces, except when inside single or double quotes.
+                    // Then, if there are outer single / double quotes, we remove them
                     includeThemes = new List<string>(Regex.Split(flags["-i"].Trim(),
-                        """\s+(?=(?:[^'"]|'[^']*'|"[^"]*")*$)"""));
+                            """\s+(?=(?:[^'"]|'[^']*'|"[^"]*")*$)"""))
+                        .Select(TrimOuterQuotes).ToList();
                 }
 
                 List<string>? excludeThemes = null;
                 if (flags.ContainsKey("-e"))
                 {
                     // This regex matches spaces, except when inside single or double quotes.
+                    // Then, if there are outer single / double quotes, we remove them
                     excludeThemes = new List<string>(Regex.Split(flags["-e"].Trim(),
-                        """\s+(?=(?:[^'"]|'[^']*'|"[^"]*")*$)"""));
+                        """\s+(?=(?:[^'"]|'[^']*'|"[^"]*")*$)"""))
+                             .Select(TrimOuterQuotes).ToList();
                 }
 
                 // Remember: includeThemes and excludeThemes are mutually exclusive, so only one of them
@@ -238,8 +242,10 @@ static class Program
             if (flags.ContainsKey("-f"))
             {
                 // This regex matches spaces, except when inside single or double quotes.
+                // Then, if there are outer single / double quotes, we remove them
                 var themePaths = new List<string>(Regex.Split(flags["-f"].Trim(),
-                    """\s+(?=(?:[^'"]|'[^']*'|"[^"]*")*$)"""));
+                        """\s+(?=(?:[^'"]|'[^']*'|"[^"]*")*$)"""))
+                    .Select(TrimOuterQuotes).ToList();
                 Console.WriteLine($"Installing theme(s) from {ListItems(themePaths)}...");
                 try
                 {
@@ -290,11 +296,11 @@ Options:
 "
                             );
     }
-    
+
     private static string ListItems(List<string> items)
     {
         // Helper function to convert a list of strings to a grammatically correct string
-        
+
         if (items.Count == 1)
         {
             return items[0];
@@ -310,8 +316,25 @@ Options:
             {
                 result += items[i] + ", ";
             }
+
             result += "and " + items[^1];
             return result;
+        }
+    }
+
+    private static string TrimOuterQuotes(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+            return input;
+
+        switch (input[0])
+        {
+            case '"':
+                return input.Trim('"');
+            case '\'':
+                return input.Trim('\'');
+            default:
+                return input;
         }
     }
 }
