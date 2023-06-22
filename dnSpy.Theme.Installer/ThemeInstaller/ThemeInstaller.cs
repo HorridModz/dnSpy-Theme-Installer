@@ -34,7 +34,7 @@ public class ThemeInstaller
         return theme;
     }
     
-    private Dictionary<string, string> BuiltinThemesDictionary
+    private static Dictionary<string, string> BuiltinThemesDictionary
     {
         get
         {
@@ -48,9 +48,15 @@ public class ThemeInstaller
             return builtinThemes;
         }
     }
-
-    // ReSharper disable once MemberCanBePrivate.Global
-    public List<string> BuiltinThemes => BuiltinThemesDictionary.Keys.ToList();
+    
+    public static List<string> BuiltinThemes
+    {
+        get
+        {
+            var builtinThemesPaths = Directory.GetFiles(BuiltinThemesDirectory).ToList();
+            return builtinThemesPaths.Select(themePath => Path.GetFileName(themePath)).ToList();
+        }
+    }
 
     private string GetBuiltinThemePath(string theme)
     {
