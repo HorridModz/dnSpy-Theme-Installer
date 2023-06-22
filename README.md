@@ -54,7 +54,7 @@ dnSpy comes with a few built-in themes. However, 3 themes isn't enough! Luckily,
 
 Only **command-line** usage is supported.
 
-> **Note**: If an argument or flag value has multiple words, enclose it in double quotes (""). If you need to use double quotes in the value, use single quotes instead (or swap them).
+> **Note**: If an argument or flag value has multiple words, enclose it in double quotes (""). If you need to use double quotes in the value or the value has a space in it, use single quotes instead (or swap them).
 
 To display help, supply the `-h` flag.
 
