@@ -34,7 +34,7 @@ static class Program
         string? flagName = null;
         foreach (var arg in args)
         {
-            if (arg.StartsWith('-'))
+            if (arg.StartsWith('-') && arg.Length > 1)
             {
                 //Flag
                 if (flagName != null)
