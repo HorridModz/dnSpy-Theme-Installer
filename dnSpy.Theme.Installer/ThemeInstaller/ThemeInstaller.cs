@@ -77,7 +77,9 @@ public class ThemeInstaller
     {
         if (File.Exists(themePath))
         { 
-            File.Copy(themePath, dnSpyThemesDirectory + Path.GetFileName(themePath), true);  
+            File.Copy(themePath,
+                Path.Combine(dnSpyThemesDirectory, Path.GetFileName(themePath)),
+                true);  
         }
         else if (Directory.Exists(themePath))
         {
