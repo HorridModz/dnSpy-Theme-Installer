@@ -88,7 +88,7 @@ static class Program
             }
             
             if (new List<string> { "-i", "-e", "-f" }.Contains(flag.Key)
-                && flag.Value == null || flag.Value.All(char.IsWhiteSpace))
+                && (flag.Value == null || flag.Value.All(char.IsWhiteSpace)))
             {
                 switch (flag.Key)
                 {
