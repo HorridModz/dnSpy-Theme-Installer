@@ -14,7 +14,7 @@ public class ThemeHotReloadPluginInstaller
     {
         AssertDirectoryExists(dnSpyDirectory);
         
-        dnSpyPluginsDirectory = Path.Combine(dnSpyDirectory, "bin", "Themes");
+        dnSpyPluginsDirectory = Path.Combine(dnSpyDirectory, "bin", "Plugins");
 
         AssertDirectoryExists(dnSpyPluginsDirectory);
         AssertDirectoryExists(PluginDirectory);
