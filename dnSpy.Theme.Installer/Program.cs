@@ -16,7 +16,7 @@ static class Program
               && Directory.Exists(ThemeHotReloadPluginInstaller.PluginDirectory))
            )
         {
-            Console.Error.WriteLine("Built-in themes and plugins not found - has the exe been moved" +
+            Console.Error.WriteLine("Error: Built-in themes and plugins not found - has the exe been moved" +
                                     " out of its folder?");
             return 1;
         }
@@ -53,14 +53,15 @@ static class Program
                 // isn't smart enough to know that, so I added it to stop Rider from complaining
                 if (new List<string> { "b", "-i", "-e", "-f", "-p" }.Contains(flag.Key))
                 {
-                    Console.Error.WriteLine("Provide the path to your dnSpy installation as the first argument.");
+                    Console.Error.WriteLine("Error: Provide the path to your dnSpy installation as the" +
+                                            " first argument.");
                     return 1;
                 }
             }
         }
         else if (arguments.Count > 1)
         {
-            Console.Error.WriteLine("Too many arguments. Provide the path to your" +
+            Console.Error.WriteLine("Error: Too many arguments. Provide the path to your" +
                                     " dnSpy installation as the first and only argument.");
             return 1;
         }
@@ -73,7 +74,7 @@ static class Program
         {
             if (!(new List<string> { "-h", "-l", "-b", "-i", "-e", "-f", "-p" }.Contains(flag.Key)))
             {
-                Console.Error.WriteLine($"Unexpected flag: '{flag.Value}'. To see all valid flags, run" +
+                Console.Error.WriteLine($"Error: Unexpected flag: '{flag.Value}'. To see all valid flags, run" +
                                         " dnSpyThemeInstaller without any arguments or with the -h flag");
             }
 
@@ -85,15 +86,15 @@ static class Program
                 switch (flag.Key)
                 {
                     case "-i":
-                        Console.Error.WriteLine("Expected value for -i flag - list of built-in theme(s) to" +
+                        Console.Error.WriteLine("Error: Expected value for -i flag - list of built-in theme(s) to" +
                                                 " install, separated by space (' ')");
                         return 1;
                     case "-e":
-                        Console.Error.WriteLine("Expected value for -e flag - list of built-in theme(s)" +
+                        Console.Error.WriteLine("Error: Expected value for -e flag - list of built-in theme(s)" +
                                                 " not to install, separated by space (' ')");
                         return 1;
                     case "-f":
-                        Console.Error.WriteLine("Expected value for -f flag - list of path(s) to" +
+                        Console.Error.WriteLine("Error: Expected value for -f flag - list of path(s) to" +
                                                 " theme files / folders containing theme files to install");
                         return 1;
                 }
@@ -102,10 +103,10 @@ static class Program
 
         if (flags.ContainsKey("-i") && flags.ContainsKey("-e"))
         {
-            Console.Error.WriteLine("-i flag (list of built-in theme(s) to install" +
+            Console.Error.WriteLine("Error: -i flag (list of built-in theme(s) to install" +
                                     " and -e flag (list of built-in theme(s) not to install" +
                                     " are mutually exclusive. For more information, run" +
-                                    " dnSpyThemeInstaller without any arguments or with the -h flag");
+                                    " dnSpyThemeInstaller without any arguments or with the -h flag.");
             return 1;
         }
 
