@@ -186,9 +186,10 @@ static class Program
                 {
                     // This regex matches spaces, except when inside single or double quotes.
                     // Then, if there are outer single / double quotes, we remove them
+                    // Finally, we remove the file extension if there is one
                     includeThemes = new List<string>(Regex.Split(flags["-i"].Trim(),
                             """\s+(?=(?:[^'"]|'[^']*'|"[^"]*")*$)"""))
-                        .Select(TrimOuterQuotes).ToList();
+                            .Select(TrimOuterQuotes).Select(Path.GetFileNameWithoutExtension).ToList();
                 }
 
                 List<string>? excludeThemes = null;
@@ -196,9 +197,10 @@ static class Program
                 {
                     // This regex matches spaces, except when inside single or double quotes.
                     // Then, if there are outer single / double quotes, we remove them
+                    // Finally, we remove the file extension if there is one
                     excludeThemes = new List<string>(Regex.Split(flags["-e"].Trim(),
                         """\s+(?=(?:[^'"]|'[^']*'|"[^"]*")*$)"""))
-                             .Select(TrimOuterQuotes).ToList();
+                             .Select(TrimOuterQuotes).Select(Path.GetFileNameWithoutExtension).ToList();
                 }
 
                 // Remember: includeThemes and excludeThemes are mutually exclusive, so only one of them
