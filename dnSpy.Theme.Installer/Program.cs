@@ -33,7 +33,7 @@ static class Program
         {
             if (arg.StartsWith('-') && arg.Length > 1 && (arg.Length == 2 || char.IsWhiteSpace(arg, 2)))
             {
-                flags.Add(arg[1..2], arg.Length > 2 ? arg[2..] : null);
+                flags.Add(arg[0..2], arg.Length > 2 ? arg[2..] : null);
             }
             else
             {
@@ -110,7 +110,7 @@ static class Program
         }
 
         // Help
-
+        
         if (flags.ContainsKey("-h"))
         {
             Help();
