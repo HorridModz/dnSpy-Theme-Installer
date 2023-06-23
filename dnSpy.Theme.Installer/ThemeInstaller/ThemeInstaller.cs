@@ -54,7 +54,7 @@ public class ThemeInstaller
         get
         {
             var builtinThemesPaths = Directory.GetFiles(BuiltinThemesDirectory).ToList();
-            return builtinThemesPaths.Select(Path.GetFileName).ToList();
+            return builtinThemesPaths.Select(themePath => Path.GetFileName(themePath)).ToList();
         }
     }
 
