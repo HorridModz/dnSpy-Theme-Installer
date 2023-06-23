@@ -100,7 +100,7 @@ dnSpyThemeInstaller <path_to_dnSpy_folder> -f <file_or_directory>
 This argument supports theme files or directories containing theme files. You can also mix and match, like this:
 
 ```sh
-dnSpyThemeInstaller <path_to_dnspy_folder> -f "'dir_1' 'file_1' 'dir_2' 'file_2'"
+dnSpyThemeInstaller <path_to_dnSpy_folder> -f "'dir_1' 'file_1' 'dir_2' 'file_2'"
 ```
 
 To install the [ThemeHotReload](https://github.com/HoLLy-HaCKeR/dnSpy.Extension.ThemeHotReload) plugin, which allows for hot-reloading themes during theme development, run `dnSpyThemeInstaller` with the `-p` flag:
