@@ -11,6 +11,8 @@ public class ThemeInstaller
     // ReSharper disable once MemberCanBePrivate.Global
     // ReSharper disable once InconsistentNaming
     public readonly string dnSpyThemesDirectory;
+    public static readonly string BuiltinThemesDirectory =
+        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Themes");
 
     public ThemeInstaller(string dnSpyDirectory)
     {
@@ -21,12 +23,9 @@ public class ThemeInstaller
         AssertDirectoryExists(dnSpyThemesDirectory);
         AssertDirectoryExists(BuiltinThemesDirectory);
     }
-
     
-    public static string BuiltinThemesDirectory =>
-        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Themes");
     private static string FormatBuiltinTheme(string theme)
-    { 
+    {
         // Replace space with underscore to match theme file naming convention
         theme = theme.Replace(" ", "_");
         // Remove file extension if it exists
