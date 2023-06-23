@@ -4,7 +4,7 @@ Automatically adds a curated list of additional themes to dnSpy
 
 # dnSpy-Plugin-Installer
 
-~~dnSpyThemeInstaller has a [sister project](link) called dnSpyPluginInstaller which is almost identical, except it's for plugins instead of themes~~
+~~dnSpyThemeInstaller has a [sister project](https://github.com/HorridModz/dnSpy-Plugin-Installer) called dnSpyPluginInstaller which is almost identical, except it's for plugins instead of themes.~~
 **dnSpyPluginInstaller** is yet to be created. When it is created, this will be updated.
 
 # Using Themes
@@ -73,7 +73,7 @@ dnSpyThemeInstaller -h
 To install all of the built-in themes, run `dnSpyThemeInstaller` with the `b` flag. The `b` flag is overridden by the `i` and `e` flags.
 
 ```sh
-dnSpyThemeInstaller <path_to_dnSpy_folder>
+dnSpyThemeInstaller <path_to_dnSpy_folder> -b
 ```
 
 To only install some of the built-in themes, use the `-i` flag. It does not matter whether you specify the `.dntheme` file extension or not. Separate the themes you want to install with a space (` `). If a theme has a space in its name, enclose the theme in quotes.
