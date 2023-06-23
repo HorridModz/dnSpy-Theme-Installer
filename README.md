@@ -77,14 +77,15 @@ dnSpyThemeInstaller <path_to_dnSpy_folder> -b
 ```
 
 To only install some of the built-in themes, use the `-i` flag. It does not matter whether you specify the `.dntheme` file extension or not. Separate the themes you want to install with a space (` `). If a theme has a space in its name, enclose it in quotes.
-> **Note**: The `i` flag and the `e ` flag are mutually exclusive
+> **Note**: The `i` flag and `e` flags are mutually exclusive
 
 ```sh
 dnSpyThemeInstaller <path_to_dnSpy_folder> -i <themes_to_install>
 ```
 
 To install all of the built-in themes except for a few, use the `-e` flag. It does not matter whether you specify the `.dntheme` file extension or not. Separate the themes you want to exclude with a space (` `). If a theme has a space in its name, enclose it in quotes.
-> **Note**: The `i` flag and the `e ` flag are mutually exclusive
+> **Note**: The `i` flag and `e` flags
+are mutually exclusive
 
 ```sh
 dnSpyThemeInstaller <path_to_dnSpy_folder> -e <themes_to_exclude>
