@@ -60,7 +60,6 @@ public class ThemeInstaller
 
     private string GetBuiltinThemePath(string theme)
     {
-        // Replace space with underscore to match theme file naming convention
         var oldTheme = theme;
         theme = FormatBuiltinTheme(theme);
         if (!(BuiltinThemesDictionary.ContainsKey(theme)))
