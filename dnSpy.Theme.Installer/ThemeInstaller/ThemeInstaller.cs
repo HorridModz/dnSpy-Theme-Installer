@@ -79,7 +79,16 @@ public class ThemeInstaller
                 Path.Combine(dnSpyThemesDirectory, Path.GetFileName(themePath)),
                 true);  
         }
-        else if (Directory.Exists(themePath))
+        else
+        {
+            throw new FileNotFoundException($"File / folder at path `{themePath}` does not exist.");
+        }
+    }
+    
+    // ReSharper disable once MemberCanBePrivate.Global
+    public void InstallAllThemesInDirectory(string themePath)
+    {
+        if (Directory.Exists(themePath))
         {
             foreach (var file in Directory.GetFiles(themePath, "*.dntheme"))
             {
@@ -88,15 +97,27 @@ public class ThemeInstaller
         }
         else
         {
-            throw new FileNotFoundException($"File / folder at path `{themePath}` does not exist.");
+            throw new DirectoryNotFoundException("File / folder at path" +
+                                                 $"`{themePath}` does not exist.");
         }
     }
-    
+
     public void InstallThemes(List<string> themePaths)
     {
         foreach (var themePath in themePaths)
         {
-            InstallTheme(themePath);
+            if (Directory.Exists(themePath))
+            {
+                InstallAllThemesInDirectory(themePath);
+            }
+            else if (File.Exists(themePath))
+            {
+                InstallTheme(themePath);
+            }
+            else
+            {
+                throw new FileNotFoundException($"File / folder at path `{themePath}` does not exist.");
+            }
         }
     }
 
