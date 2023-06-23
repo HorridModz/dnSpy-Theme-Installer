@@ -62,12 +62,12 @@ public class ThemeInstaller
     {
         var oldTheme = theme;
         theme = FormatBuiltinTheme(theme);
-        if (!(BuiltinThemesDictionary.ContainsKey(theme)))
+        if (!(BuiltinThemesDictionary.TryGetValue(theme, out string? themePath)))
         {
             throw new ArgumentException($"{oldTheme} is not a built-in theme");
         }
 
-        return BuiltinThemesDictionary[theme];
+        return themePath;
     }
 
     // ReSharper disable once MemberCanBePrivate.Global
