@@ -10,8 +10,8 @@ public class ThemeInstaller
 {
     // ReSharper disable once MemberCanBePrivate.Global
     // ReSharper disable once InconsistentNaming
-    public readonly string dnSpyThemesDirectory;
-    public static readonly string BuiltinThemesDirectory =
+    public string dnSpyThemesDirectory { get; }
+    public static string BuiltinThemesDirectory { get; } =
         Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Themes");
 
     public ThemeInstaller(string dnSpyDirectory)

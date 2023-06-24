@@ -8,8 +8,9 @@ public class ThemeHotReloadPluginInstaller
 {
     // ReSharper disable once MemberCanBePrivate.Global
     // ReSharper disable once InconsistentNaming
-    public readonly string dnSpyPluginsDirectory;
-    public static readonly string PluginDirectory =
+    public string dnSpyPluginsDirectory { get; }
+    
+    public static string PluginDirectory { get; } =
         Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ThemeHotReload_Plugin");
 
     public ThemeHotReloadPluginInstaller(string dnSpyDirectory)
