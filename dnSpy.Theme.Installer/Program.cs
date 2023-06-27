@@ -286,7 +286,7 @@ Usage: dnSpyThemeInstaller <path_to_dnSpy_folder> [Options]
 
 Options:
   -h                Display help.
-  -b                List all built-in themes.
+  -l                List all built-in themes.
   -b                Install all built-in themes.
   -i [themes]       Install some built-in theme(s). Separate with space ("" ""). Mutually exclusive with -e flag.
   -e [themes]       Install all built-in theme(s) except these. Separate with space ("" ""). Mutually exclusive with -i flag.
