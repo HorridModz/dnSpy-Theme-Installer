@@ -2,7 +2,7 @@
 
 Automatically adds a curated list of additional themes to dnSpy
 
-# dnSpy-Plugin-Installer
+## dnSpy-Plugin-Installer
 
 ~~dnSpyThemeInstaller has a [sister project](https://github.com/HorridModz/dnSpy-Plugin-Installer) called dnSpyPluginInstaller which is almost identical, except it's for plugins instead of themes.~~
 **dnSpyPluginInstaller** is yet to be created. When it is created, this will be updated.
